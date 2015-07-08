@@ -10,30 +10,30 @@
         
         if (successCallback === null) {
             successCallback = function (response) {
-                console.log('Pc700Print.printText sukses: ' + response);
+                console.log('PrintPc700.printText sukses: ' + response);
             };
         }
         
         if (errorCallback === null) {
             errorCallback = function (error) {
-                console.error('Pc700Print.printText deshtim: ' + error);
+                console.error('PrintPc700.printText deshtim: ' + error);
             };
         }
         
         if (typeof errorCallback != "function") {
-            console.error("Pc700Print.printText failure: parametri deshtimit nuk eshte funksion");
+            console.error("PrintPc700.printText failure: parametri deshtimit nuk eshte funksion");
             return;
         }
         
         if (typeof successCallback != "function") {
-            console.error("Pc700Print.printText failure: parametri callback i suksesit duhet te jete patjeter funksion");
+            console.error("PrintPc700.printText failure: parametri callback i suksesit duhet te jete patjeter funksion");
             return;
         }
         
         exec(
             successCallback,
             errorCallback,
-            "Pc700Print",
+            "PrintPc700",
             "printText",
             ["Ridi", 0]
         );
