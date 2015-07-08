@@ -35,7 +35,7 @@
             errorCallback,
             "PrintPc700",
             "printText",
-            ["Ridi", 0]
+            [[], 0]
         );
     };
     
