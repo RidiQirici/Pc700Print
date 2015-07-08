@@ -1,0 +1,23 @@
+{
+  "name": "pc700print_plugin",
+  "version": "1.0.1",
+  "description": "Librari cordova per te printuar ne printer Android Pc700Print",
+  "main": "www/pc700print.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RidiQirici/Pc700Print.git"
+  },
+  "keywords": [
+    "cordova",
+    "pc700print"
+  ],
+  "author": "Ridi Qirici",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RidiQirici/Pc700Print/issues"
+  },
+  "homepage": "https://github.com/RidiQirici/Pc700Print"
+}
