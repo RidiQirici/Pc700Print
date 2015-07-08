@@ -91,7 +91,7 @@ public class PrintPc700 extends CordovaPlugin{
 			return uPrintua;
 		} catch (Exception e) {
 			this.veprimiKryer = false;
-        	this.mesazhi.error("Gabim gjate printimit te tekstit!");
+        	this.mesazhi.error("Gabim gjate printimit te tekstit!" + e.getMessage());
 			Log.e(TAG, e.getMessage());
 			return this.veprimiKryer;
 		}
