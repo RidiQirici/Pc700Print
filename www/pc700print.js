@@ -6,7 +6,7 @@
 	
     };
     
-    Pc700Print.prototype.printText = function (successCallback, errorCallback, cutPaper) {
+    Pc700Print.prototype.printText = function (successCallback, errorCallback) {
         
         if (successCallback === null) {
             successCallback = function (response) {
@@ -28,10 +28,6 @@
         if (typeof successCallback != "function") {
             console.error("Pc700Print.printText failure: parametri callback i suksesit duhet te jete patjeter funksion");
             return;
-        }
-        
-        if (!cutPaper || !(parseInt(cutPaper) === cutPaper && cutPaper > 0)) {
-            cutPaper = 5;
         }
         
         exec(
