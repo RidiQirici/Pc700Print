@@ -56,7 +56,7 @@ public class PrintPc700 extends CordovaPlugin{
 	protected static final String TAG = "Pc700PrintPlugin";
 	private CallbackContext mesazhi;
     private boolean veprimiKryer;
-    static PrinterClassSerialPort printerClass = null;
+    static PrinterClassSerialPort printerClass = new PrinterClassSerialPort();
     
 	Handler mhandler = new Handler();
 	
