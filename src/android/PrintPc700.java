@@ -1,6 +1,6 @@
 package imb.ridiqirici.plugin.cordova.pc700print;
 
-import org.apache.cordova.CordovaPlugin;
+import org.apache.cordova.api.CordovaPlugin;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -9,7 +9,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-import org.apache.cordova.CallbackContext;
+import org.apache.cordova.api.CallbackContext;
 import org.json.JSONArray;
 import org.json.JSONException;
 
@@ -98,17 +98,18 @@ public class PrintPc700 extends CordovaPlugin{
 				return this.veprimiKryer;
 			}*/
 			printerClass = new PrinterClassSerialPort();
-			int gjat = printerClass.printTextProve(str);
+			printerClass.open();
+			this.veprimiKryer = printerClass.printText(str);
 			//this.veprimiKryer = printerClass.printText(str);
 			/*printerClass.setSerialPortBaudrate(38400);*/
 			
-			if (gjat == 0)
+			if (!this.veprimiKryer)
 			{
 				this.veprimiKryer = false;
 				this.mesazhi.error("Printimi i tekstit nuk u krye me sukses! ");
 				return this.veprimiKryer;
 			}
-			this.mesazhi.success("Printimi i tekstit u krye me sukses! " + gjat);
+			this.mesazhi.success("Printimi i tekstit u krye me sukses! ");
 			return this.veprimiKryer;
 		} catch (Exception e) {
 			this.veprimiKryer = false;
