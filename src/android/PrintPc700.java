@@ -98,7 +98,7 @@ public class PrintPc700 extends CordovaPlugin{
 				return this.veprimiKryer;
 			}*/
 			printerClass = new PrinterClassSerialPort();
-			printerClass.open();
+			printerClass.setSerialPortBaudrate(38400);
 			this.veprimiKryer = printerClass.printText(str);
 			//this.veprimiKryer = printerClass.printText(str);
 			/*printerClass.setSerialPortBaudrate(38400);*/
