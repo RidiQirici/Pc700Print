@@ -39,10 +39,14 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.Message;
 import android.os.UserHandle;
 import android.util.Log;
 import android.view.Display;
+import android.widget.Toast;
 
+import com.zkc.helper.printer.PrintService;
+import com.zkc.helper.printer.PrinterClass;
 import com.zkc.pc700.activity.MainActivity;
 import com.zkc.pc700.helper.PrinterClassSerialPort;
 
@@ -54,6 +58,54 @@ public class PrintPc700 extends CordovaPlugin{
     private boolean veprimiKryer;
     static PrinterClassSerialPort printerClass = null;
     
+	Handler mhandler = new Handler() {
+		public void handleMessage(Message msg) {
+			switch (msg.what) {
+			case PrinterClass.MESSAGE_READ:
+				byte[] readBuf = (byte[]) msg.obj;
+				Log.i(TAG, "readBuf:" + readBuf[0]);
+				if (readBuf[0] == 0x13) {
+					PrintService.isFUll = true;
+				} else if (readBuf[0] == 0x11) {
+					PrintService.isFUll = false;
+				} else {
+					String readMessage = new String(readBuf, 0, msg.arg1);
+					if (readMessage.contains("800"))// 80mm paper
+					{
+						PrintService.imageWidth = 72;
+					} else if (readMessage.contains("580"))// 58mm paper
+					{
+						PrintService.imageWidth = 48;
+					}else {
+						
+					}
+				}
+				break;
+			case PrinterClass.MESSAGE_STATE_CHANGE:// 蓝牙连接状
+				switch (msg.arg1) {
+				case PrinterClass.STATE_CONNECTED:// 已经连接
+					break;
+				case PrinterClass.STATE_CONNECTING:// 正在连接
+					break;
+				case PrinterClass.STATE_LISTEN:
+				case PrinterClass.STATE_NONE:
+					break;
+				case PrinterClass.SUCCESS_CONNECT:
+					printerClass.write(new byte[] { 0x1b, 0x2b });// 检测打印机型号
+					break;
+				case PrinterClass.FAILED_CONNECT:
+					break;
+				case PrinterClass.LOSE_CONNECT:
+				}
+				break;
+			case PrinterClass.MESSAGE_WRITE:
+
+				break;
+			}
+			super.handleMessage(msg);
+		}
+	};
+	
 	@Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 		this.mesazhi = callbackContext;
@@ -83,6 +135,7 @@ public class PrintPc700 extends CordovaPlugin{
 		String str = "Pershendetje";
 		boolean uPrintua = false;
 		try {
+			printerClass = new PrinterClassSerialPort(mhandler);
 			/*if (printerClass.open())
 			{
 				uPrintua = printerClass.printText(str);
