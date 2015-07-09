@@ -86,7 +86,7 @@ public class PrintPc700 extends CordovaPlugin{
     }
         
 	public boolean printoTekstin(JSONArray arObj, int cutLines) {
-		String str = "´òÓ¡²âÊÔ´òÓ¡²âÊÔ´òÓ¡²âÊÔ´òÓ¡²âÊÔ´òÓ¡²âÊÔ\r\nabcdefghijklmnopqrstuvw\r\n";
+		String str = "Pershendetje\r\n";
 		this.veprimiKryer = true;
 		try {
 			//printerClass = new PrinterClassSerialPort();
