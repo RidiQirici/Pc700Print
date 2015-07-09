@@ -56,7 +56,7 @@ public class PrintPc700 extends CordovaPlugin{
 	protected static final String TAG = "Pc700PrintPlugin";
 	private CallbackContext mesazhi;
     private boolean veprimiKryer;
-    static PrinterClassSerialPort printerClass = new PrinterClassSerialPort();
+    static PrinterClassSerialPort printerClass = null;
     
 	Handler mhandler = new Handler();
 	
@@ -97,7 +97,8 @@ public class PrintPc700 extends CordovaPlugin{
 				this.mesazhi.error("Printimi i tekstit nuk u krye me sukses! ");
 				return this.veprimiKryer;
 			}*/
-			printerClass.setSerialPortBaudrate(38400);
+			printerClass = new PrinterClassSerialPort();
+			/*printerClass.setSerialPortBaudrate(38400);
 			this.veprimiKryer = printerClass.printText(str);
 			if (!this.veprimiKryer)
 			{
@@ -105,7 +106,7 @@ public class PrintPc700 extends CordovaPlugin{
 				this.mesazhi.error("Printimi i tekstit nuk u krye me sukses! ");
 				return this.veprimiKryer;
 			}
-			this.mesazhi.success("Printimi i tekstit u krye me sukses!");
+			this.mesazhi.success("Printimi i tekstit u krye me sukses!");*/
 			return this.veprimiKryer;
 		} catch (Exception e) {
 			this.veprimiKryer = false;
