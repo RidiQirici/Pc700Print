@@ -136,13 +136,12 @@ public class PrintPc700 extends CordovaPlugin{
 		boolean uPrintua = false;
 		try {
 			printerClass = new PrinterClassSerialPort(mhandler);
-			/*if (printerClass.open())
+			if (printerClass.open())
 			{
 				uPrintua = printerClass.printText(str);
 				printerClass.close();
 			}
-			return uPrintua;*/
-			uPrintua = printerClass.open();
+			return uPrintua;
 			return uPrintua;
 		} catch (Exception e) {
 			this.veprimiKryer = false;
