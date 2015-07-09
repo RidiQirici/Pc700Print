@@ -83,12 +83,13 @@ public class PrintPc700 extends CordovaPlugin{
 		String str = "Pershendetje";
 		boolean uPrintua = false;
 		try {
-			if (printerClass.open())
+			/*if (printerClass.open())
 			{
 				uPrintua = printerClass.printText(str);
 				printerClass.close();
 			}
-			return uPrintua;
+			return uPrintua;*/
+			return printerClass.open();
 		} catch (Exception e) {
 			this.veprimiKryer = false;
         	this.mesazhi.error("Gabim gjate printimit te tekstit!" + e.getMessage());
