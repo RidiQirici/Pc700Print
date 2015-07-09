@@ -58,53 +58,7 @@ public class PrintPc700 extends CordovaPlugin{
     private boolean veprimiKryer;
     static PrinterClassSerialPort printerClass = null;
     
-	Handler mhandler = new Handler() {
-		public void handleMessage(Message msg) {
-			switch (msg.what) {
-			case PrinterClass.MESSAGE_READ:
-				byte[] readBuf = (byte[]) msg.obj;
-				//Log.i(TAG, "readBuf:" + readBuf[0]);
-				if (readBuf[0] == 0x13) {
-					PrintService.isFUll = true;
-				} else if (readBuf[0] == 0x11) {
-					PrintService.isFUll = false;
-				} else {
-					String readMessage = new String(readBuf, 0, msg.arg1);
-					if (readMessage.contains("800"))// 80mm paper
-					{
-						PrintService.imageWidth = 72;
-					} else if (readMessage.contains("580"))// 58mm paper
-					{
-						PrintService.imageWidth = 48;
-					}else {
-						
-					}
-				}
-				break;
-			case PrinterClass.MESSAGE_STATE_CHANGE:// 蓝牙连接状
-				switch (msg.arg1) {
-				case PrinterClass.STATE_CONNECTED:// 已经连接
-					break;
-				case PrinterClass.STATE_CONNECTING:// 正在连接
-					break;
-				case PrinterClass.STATE_LISTEN:
-				case PrinterClass.STATE_NONE:
-					break;
-				case PrinterClass.SUCCESS_CONNECT:
-					printerClass.write(new byte[] { 0x1b, 0x2b });// 检测打印机型号
-					break;
-				case PrinterClass.FAILED_CONNECT:
-					break;
-				case PrinterClass.LOSE_CONNECT:
-				}
-				break;
-			case PrinterClass.MESSAGE_WRITE:
-
-				break;
-			}
-			super.handleMessage(msg);
-		}
-	};
+	Handler mhandler = new Handler();
 	
 	@Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
@@ -133,21 +87,21 @@ public class PrintPc700 extends CordovaPlugin{
         
 	public boolean printoTekstin(JSONArray arObj, int cutLines) {
 		String str = "Pershendetje";
-		boolean uPrintua = false;
+		this.veprimiKryer = false;
 		try {
-			printerClass = new PrinterClassSerialPort(mhandler);
+			printerClass = new PrinterClassSerialPort();
 			//printerClass.setSerialPortBaudrate(38400);
-			this.veprimiKryer = printerClass.printText(str);
+			/*this.veprimiKryer = printerClass.printText(str);
 			if (!this.veprimiKryer)
 			{
 				this.mesazhi.error("Printimi i tekstit nuk u krye me sukses! ");
 				return this.veprimiKryer;
 			}
-			this.mesazhi.success("Printimi i tekstit u krye me sukses!");
+			this.mesazhi.success("Printimi i tekstit u krye me sukses!");*/
 			return this.veprimiKryer;
 		} catch (Exception e) {
 			this.veprimiKryer = false;
-        	this.mesazhi.error("Gabim gjate printimit te tekstit! " + e.getMessage() + " " + e.toString() + " " + uPrintua);
+        	this.mesazhi.error("Gabim gjate printimit te tekstit! " + e.getMessage() + " " + e.toString() + " " + this.veprimiKryer);
 			//Log.e(TAG, e.getMessage());
 			return this.veprimiKryer;
 		}
