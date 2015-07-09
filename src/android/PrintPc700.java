@@ -86,7 +86,7 @@ public class PrintPc700 extends CordovaPlugin{
     }
         
 	public boolean printoTekstin(JSONArray arObj, int cutLines) {
-		String str = "Pershendetje";
+		String str = "Pershendetje\r\n";
 		this.veprimiKryer = true;
 		try {
 			//printerClass = new PrinterClassSerialPort();
@@ -98,6 +98,7 @@ public class PrintPc700 extends CordovaPlugin{
 				return this.veprimiKryer;
 			}*/
 			printerClass = new PrinterClassSerialPort();
+			this.veprimiKryer = printerClass.printText(str);
 			/*printerClass.setSerialPortBaudrate(38400);
 			this.veprimiKryer = printerClass.printText(str);
 			if (!this.veprimiKryer)
@@ -105,8 +106,8 @@ public class PrintPc700 extends CordovaPlugin{
 				this.veprimiKryer = false;
 				this.mesazhi.error("Printimi i tekstit nuk u krye me sukses! ");
 				return this.veprimiKryer;
-			}
-			this.mesazhi.success("Printimi i tekstit u krye me sukses!");*/
+			}*/
+			this.mesazhi.success("Printimi i tekstit u krye me sukses!");
 			return this.veprimiKryer;
 		} catch (Exception e) {
 			this.veprimiKryer = false;
