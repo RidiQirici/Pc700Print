@@ -63,7 +63,7 @@ public class PrintPc700 extends CordovaPlugin{
 			switch (msg.what) {
 			case PrinterClass.MESSAGE_READ:
 				byte[] readBuf = (byte[]) msg.obj;
-				Log.i(TAG, "readBuf:" + readBuf[0]);
+				//Log.i(TAG, "readBuf:" + readBuf[0]);
 				if (readBuf[0] == 0x13) {
 					PrintService.isFUll = true;
 				} else if (readBuf[0] == 0x11) {
@@ -119,14 +119,14 @@ public class PrintPc700 extends CordovaPlugin{
             } else {
                 this.veprimiKryer = false;
                 this.mesazhi.error("Perdoruesi nuk ka specifikuar te dhena per tu printuar");
-                Log.d(TAG, "Ndodhi nje JSON Exception ");
+                //Log.d(TAG, "Ndodhi nje JSON Exception ");
             }
         } else if (PRINT_IMG.equals(action)) {
             //TODO
         } else {
         	this.veprimiKryer = false;
         	this.mesazhi.error("Veprim i pavlefshem!");
-            Log.d(TAG, "Veprim i pavlefshem : Eshte kaluar veprimi " + action + "!");
+            //Log.d(TAG, "Veprim i pavlefshem : Eshte kaluar veprimi " + action + "!");
         }
         return veprimiKryer;
     }
@@ -148,7 +148,7 @@ public class PrintPc700 extends CordovaPlugin{
 		} catch (Exception e) {
 			this.veprimiKryer = false;
         	this.mesazhi.error("Gabim gjate printimit te tekstit! " + e.getMessage() + " " + e.toString() + " " + uPrintua);
-			Log.e(TAG, e.getMessage());
+			//Log.e(TAG, e.getMessage());
 			return this.veprimiKryer;
 		}
     }
