@@ -86,7 +86,7 @@ public class PrintPc700 extends CordovaPlugin{
     }
         
 	public boolean printoTekstin(JSONArray arObj, int cutLines) {
-		String str = "Pershendetje\r\n";
+		String str = "´òÓ¡²âÊÔ´òÓ¡²âÊÔ´òÓ¡²âÊÔ´òÓ¡²âÊÔ´òÓ¡²âÊÔ\r\nabcdefghijklmnopqrstuvw\r\n";
 		this.veprimiKryer = true;
 		try {
 			//printerClass = new PrinterClassSerialPort();
@@ -100,7 +100,7 @@ public class PrintPc700 extends CordovaPlugin{
 			printerClass = new PrinterClassSerialPort();
 			this.veprimiKryer = printerClass.printText(str);
 			/*printerClass.setSerialPortBaudrate(38400);
-			this.veprimiKryer = printerClass.printText(str);
+			
 			if (!this.veprimiKryer)
 			{
 				this.veprimiKryer = false;
