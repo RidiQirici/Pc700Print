@@ -73,14 +73,14 @@ public class PrintPc700 extends CordovaPlugin{
             } else {
                 this.veprimiKryer = false;
                 this.mesazhi.error("Perdoruesi nuk ka specifikuar te dhena per tu printuar");
-                //Log.d(TAG, "Ndodhi nje JSON Exception ");
+                Log.d(TAG, "Ndodhi nje JSON Exception ");
             }
         } else if (PRINT_IMG.equals(action)) {
             //TODO
         } else {
         	this.veprimiKryer = false;
         	this.mesazhi.error("Veprim i pavlefshem!");
-            //Log.d(TAG, "Veprim i pavlefshem : Eshte kaluar veprimi " + action + "!");
+            Log.d(TAG, "Veprim i pavlefshem : Eshte kaluar veprimi " + action + "!");
         }
         return veprimiKryer;
     }
@@ -96,13 +96,13 @@ public class PrintPc700 extends CordovaPlugin{
 			{
 				this.mesazhi.error("Printimi i tekstit nuk u krye me sukses! ");
 				return this.veprimiKryer;
-			}
-			this.mesazhi.success("Printimi i tekstit u krye me sukses!");*/
+			}*/
+			this.mesazhi.success("Printimi i tekstit u krye me sukses!");
 			return this.veprimiKryer;
 		} catch (Exception e) {
 			this.veprimiKryer = false;
         	this.mesazhi.error("Gabim gjate printimit te tekstit! " + e.getMessage() + " " + e.toString() + " " + this.veprimiKryer);
-			//Log.e(TAG, e.getMessage());
+			Log.e(TAG, e.getMessage());
 			return this.veprimiKryer;
 		}
     }
