@@ -98,16 +98,17 @@ public class PrintPc700 extends CordovaPlugin{
 				return this.veprimiKryer;
 			}*/
 			printerClass = new PrinterClassSerialPort();
-			this.veprimiKryer = printerClass.printText(str);
+			int gjat = printerClass.printTextProve(str);
+			//this.veprimiKryer = printerClass.printText(str);
 			/*printerClass.setSerialPortBaudrate(38400);*/
 			
-			if (!this.veprimiKryer)
+			if (gjat == 0)
 			{
 				this.veprimiKryer = false;
 				this.mesazhi.error("Printimi i tekstit nuk u krye me sukses! ");
 				return this.veprimiKryer;
 			}
-			this.mesazhi.success("Printimi i tekstit u krye me sukses!");
+			this.mesazhi.success("Printimi i tekstit u krye me sukses! " + gjat.toString());
 			return this.veprimiKryer;
 		} catch (Exception e) {
 			this.veprimiKryer = false;
