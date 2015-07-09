@@ -97,7 +97,9 @@ public class PrintPc700 extends CordovaPlugin{
 				this.mesazhi.error("Printimi i tekstit nuk u krye me sukses! ");
 				return this.veprimiKryer;
 			}*/
-			if (!printerClass.setSerialPortBaudrate(38400))
+			printerClass.setSerialPortBaudrate(38400);
+			this.veprimiKryer = printerClass.printText(str);
+			if (!this.veprimiKryer)
 			{
 				this.veprimiKryer = false;
 				this.mesazhi.error("Printimi i tekstit nuk u krye me sukses! ");
