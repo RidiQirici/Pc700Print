@@ -1,6 +1,6 @@
 package imb.ridiqirici.plugin.cordova.pc700print;
 
-import org.apache.cordova.CordovaPlugin;
+import org.apache.cordova.api.CordovaPlugin;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -9,7 +9,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-import org.apache.cordova.CallbackContext;
+import org.apache.cordova.api.CallbackContext;
 import org.json.JSONArray;
 import org.json.JSONException;
 
@@ -87,7 +87,7 @@ public class PrintPc700 extends CordovaPlugin{
         
 	public boolean printoTekstin(JSONArray arObj, int cutLines) {
 		String str = "Pershendetje\r\n";
-		String s = "";
+		String s = "KOT";
 		this.veprimiKryer = true;
 		try {
 			//printerClass = new PrinterClassSerialPort();
