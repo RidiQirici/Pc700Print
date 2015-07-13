@@ -47,7 +47,6 @@ import android.widget.Toast;
 
 import com.zkc.helper.printer.PrintService;
 import com.zkc.helper.printer.PrinterClass;
-import com.zkc.pc700.activity.MainActivity;
 import com.zkc.pc700.helper.PrinterClassSerialPort;
 
 public class PrintPc700 extends CordovaPlugin{
@@ -100,7 +99,7 @@ public class PrintPc700 extends CordovaPlugin{
 			}*/
 			printerClass = new PrinterClassSerialPort();
 			s = "U krijua klasa";
-			s = printerClass.open(38400);
+			s = printerClass.open();
 			//s = printerClass.setSerialPortBaudrateProve(38400);
 			//this.veprimiKryer = printerClass.printText(str);
 			//this.veprimiKryer = printerClass.printText(str);
