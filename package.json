@@ -1,6 +1,6 @@
 {
   "name": "pc700print_plugin",
-  "version": "1.0.52",
+  "version": "1.0.53",
   "description": "Librari cordova per te printuar ne printer Android Pc700Print",
   "main": "www/pc700print.js",
   "scripts": {
