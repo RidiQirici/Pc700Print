@@ -1,6 +1,6 @@
 package imb.ridiqirici.plugin.cordova.pc700print;
 
-import org.apache.cordova.CordovaPlugin;
+import org.apache.cordova.api.CordovaPlugin;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -9,7 +9,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-import org.apache.cordova.CallbackContext;
+import org.apache.cordova.api.CallbackContext;
 import org.json.JSONArray;
 import org.json.JSONException;
 
@@ -99,7 +99,7 @@ public class PrintPc700 extends CordovaPlugin{
 			}*/
 			printerClass = new PrinterClassSerialPort();
 			s = "U krijua klasa";
-			s = printerClass.open();
+			s = printerClass.openProve();
 			//s = printerClass.setSerialPortBaudrateProve(38400);
 			//this.veprimiKryer = printerClass.printText(str);
 			//this.veprimiKryer = printerClass.printText(str);
@@ -121,3 +121,4 @@ public class PrintPc700 extends CordovaPlugin{
 		}
     }
 }
+
