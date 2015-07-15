@@ -63,9 +63,9 @@ public class PrintPc700 extends CordovaPlugin{
 		this.veprimiKryer = true;
 		
         if (PRINT_TEXT.equals(action)) {
-        	JSONArray obj = args.optJSONArray(0);
-            if (obj != null) {
-                this.printoTekstin("Yuhuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu\n\rYABADABADUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU\n\rYUPIDUUUUUUUUUUUUUUUUUUUUUUUUUUU\n\r");
+        	String message = args.getString(0);
+            if (!message.isEmpty()) {
+                this.printoTekstin(message);
             } else {
                 this.veprimiKryer = false;
                 this.mesazhi.error("Perdoruesi nuk ka specifikuar te dhena per tu printuar");
