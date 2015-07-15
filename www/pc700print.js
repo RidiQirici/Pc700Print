@@ -6,7 +6,7 @@
 	
     };
     
-    Pc700Print.prototype.printText = function (successCallback, errorCallback) {
+    Pc700Print.prototype.printText = function (text, successCallback, errorCallback) {
         
         if (successCallback === null) {
             successCallback = function (response) {
@@ -35,7 +35,7 @@
             errorCallback,
             "PrintPc700",
             "printText",
-            [[], 0]
+            [text]
         );
     };
     
