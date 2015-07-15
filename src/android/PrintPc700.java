@@ -1,6 +1,6 @@
 package imb.ridiqirici.plugin.cordova.pc700print;
 
-import org.apache.cordova.CordovaPlugin;
+import org.apache.cordova.api.CordovaPlugin;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -9,7 +9,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-import org.apache.cordova.CallbackContext;
+import org.apache.cordova.api.CallbackContext;
 import org.json.JSONArray;
 import org.json.JSONException;
 
@@ -56,8 +56,6 @@ public class PrintPc700 extends CordovaPlugin{
 	private CallbackContext mesazhi;
     private boolean veprimiKryer;
     static PrinterClassSerialPort printerClass = null;
-    
-	Handler mhandler = new Handler();
 	
 	@Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
@@ -66,9 +64,8 @@ public class PrintPc700 extends CordovaPlugin{
 		
         if (PRINT_TEXT.equals(action)) {
         	JSONArray obj = args.optJSONArray(0);
-            int nderprejrja = args.optInt(1);
             if (obj != null) {
-                this.printoTekstin(obj, nderprejrja);
+                this.printoTekstin("Yuhuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu\n\rYABADABADUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU\n\rYUPIDUUUUUUUUUUUUUUUUUUUUUUUUUUU\n\r");
             } else {
                 this.veprimiKryer = false;
                 this.mesazhi.error("Perdoruesi nuk ka specifikuar te dhena per tu printuar");
@@ -84,30 +81,29 @@ public class PrintPc700 extends CordovaPlugin{
         return veprimiKryer;
     }
         
-	public boolean printoTekstin(JSONArray arObj, int cutLines) {
-		String str = "Pershendetje\r\n";
-		String s = "KOT";
+	public boolean printoTekstin(String stringaXPrintim) {
 		this.veprimiKryer = true;
 		try {
-			//printerClass = new PrinterClassSerialPort();
-			//printerClass.setSerialPortBaudrate(38400);
-			/*this.veprimiKryer = printerClass.printText(str);
-			if (!this.veprimiKryer)
-			{
-				this.mesazhi.error("Printimi i tekstit nuk u krye me sukses! ");
-				return this.veprimiKryer;
-			}*/
 			printerClass = new PrinterClassSerialPort();
-			s = "U krijua klasa";
-			s = printerClass.openProve();
-			this.veprimiKryer = printerClass.printText(str);
+			this.veprimiKryer = printerClass.open();
 			
 			if (!this.veprimiKryer)
 			{
 				this.veprimiKryer = false;
+				this.mesazhi.error("Ndodhi nje problem gjate hapjes se portes seriale 38400!");
+				return this.veprimiKryer;
+			}
+			
+			this.veprimiKryer = printerClass.printText(stringaXPrintim);
+			
+			if (!this.veprimiKryer)
+			{
+				printerClass.close();
+				this.veprimiKryer = false;
 				this.mesazhi.error("Printimi i tekstit nuk u krye me sukses! ");
 				return this.veprimiKryer;
 			}
+			printerClass.close();
 			this.mesazhi.success("Printimi i tekstit u krye me sukses! " + s);
 			return this.veprimiKryer;
 		} catch (Exception e) {
